@@ -1,17 +1,13 @@
 import { Pool } from "pg";
-// import path from 'node:path'
-// import dotenv from 'dotenv';
-
-// const dirname = import.meta.dirname;
-
-// dotenv.config({path:path.join(dirname,'../../.env'),quiet:true})
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, DB_PORT } from "../utils/index.js";
 
 
 const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD,
+  host: DB_HOST,
+  user: DB_USER,
+  port: DB_PORT,
+  database: DB_DATABASE,
+  password: DB_PASSWORD,
 });
 
 pool.query(`select now()`, (err, res) => {
@@ -19,5 +15,4 @@ pool.query(`select now()`, (err, res) => {
   console.log(`Database connected at:${res.rows[0].now}`);
 });
 
-
-export default pool
+export default pool;
