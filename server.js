@@ -1,4 +1,4 @@
-import { app } from "./src/routes/main.js";
+import { app } from "./src/routes/app.js";
 import db from "./src/db/db.js";
 import { SERVER_PORT } from "./src/utils/index.js";
 
