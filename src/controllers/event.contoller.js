@@ -41,7 +41,14 @@ export let event = async (req, res, next) => {
           await emailQueue.add(event_type, {
             to: data.destination,
             subject:`Important Update,Regarding Payment success!`,
-            message: `Your Payment for the given order success!`,
+            message: `Your Payment for the given order successfull!`,
+            user_id,
+          },{
+            attempts:3,
+            backoff:{
+              type:"exponential",
+              delay:5000
+            }
           });
         else if (data.channel === "phone")
           await phoneQueue.add(event_type, {
