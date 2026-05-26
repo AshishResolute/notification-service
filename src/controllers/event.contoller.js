@@ -1,7 +1,7 @@
 import { ErrorHandler } from "../ErrorHandler/globalErrorClass.js";
 import { eventSchema } from "../utils/validator/validator.js";
 import db from "../db/db.js";
-import { emailQueue, phoneQueue } from "../Queues/queue.js";
+import { emailQueue, phoneQueue, webhookQueue } from "../Queues/queue.js";
 
 export let event = async (req, res, next) => {
   try {
@@ -55,6 +55,22 @@ export let event = async (req, res, next) => {
             to: data.destination,
             message: `Your paymet failed for this order!`,
           });
+          else await webhookQueue.add(event_type,{
+            to:data.destination,
+            message:`Payment Successfull for your order!`,
+            timeStamp:new Date().toLocaleString(),
+            user_id,
+            event_type,
+            channel:'webhook'
+          },
+          {
+            attempts:3,
+            backoff:{
+              delay:5000,
+              type:"exponential"
+            }
+          }
+        )
       }),
     );
     res.status(200).json({
