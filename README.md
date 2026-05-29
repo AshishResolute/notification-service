@@ -16,6 +16,7 @@ A scalable, queue-based notification service built with Node.js, designed to han
 - **Robust Error Handling**: Centralized error management
 - **PostgreSQL Integration**: For storing notification logs/templates
 - **Input Validation**: Using Joi
+- **BullMQ Queue Dashboard**: Bull-board
 - **Production Ready**: Logging, environment configuration, and proper structure
 
 ## Tech Stack
