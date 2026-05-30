@@ -1,4 +1,4 @@
-**Here's a clean, professional temporary README** for your repo:
+
 
 ---
 
@@ -62,9 +62,7 @@ cd notification-service
 npm install
 ```
 
-4. Update `.env` with your credentials (Redis, PostgreSQL, Resend API key, etc.)
-
-5. Run database seed (if needed to add data into the subscribers table in databasee):
+4. Run database seed (if needed to add data into the subscribers table in databasee):
 ```bash
 npm run seed
 ```
