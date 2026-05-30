@@ -30,3 +30,6 @@ create table if not exists delivery_logs(
     attempts int default 0,
     logged_at timestamp default now()
 );
+
+
+alter table subscribers add column if not exists condition jsonb not null default '{}'::jsonb;
