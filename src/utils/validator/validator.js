@@ -59,6 +59,7 @@ export const subcriberSchema = joi.object({
         "string.uri": `webhook must be an valid url`,
       }),
     }),
+  condition: joi.object().optional(),
 });
 
 export const eventSchema = joi.object({
@@ -79,5 +80,13 @@ export const eventSchema = joi.object({
     "any.required": `user_id is required`,
     "number.base": `user_id must be a number`,
     "number.positive": `user_id must be positive`,
+  }),
+});
+
+export const userIdSchemaForLog = joi.object({
+  user_id: joi.number().positive().required().messages({
+    "any.required": `user_id is required!`,
+    "number.positive": `Invalid user_id recieved`,
+    "number.base": `user_id must be a number`,
   }),
 });
