@@ -90,3 +90,14 @@ export const userIdSchemaForLog = joi.object({
     "number.base": `user_id must be a number`,
   }),
 });
+
+export const userLogsPaginatedSchema = joi.object({
+  page:joi.number().positive().optional().messages({
+    'number.base':`page must have a numeric value`,
+    'number.positive':`Page cannot be negative`
+  }),
+  limit:joi.number().positive().optional().messages({
+    'number.base':`limit must have a numeric value`,
+    'number.positive':`limit be a positive number`
+  })
+})
